@@ -1,22 +1,11 @@
 import React from 'react';
+import Note from './Note';
 import './Notes.css';
-import uuid from 'uuid';
 
-const data = [
-  {
-    id: uuid.v4(),
-    task: 'Learn React'
-  },
-  {
-    id: uuid.v4(),
-    task: 'Do laundry'
-  }
-];
-
-const Notes = () => {
+const Notes = ({notes}) => {
   return (
-    <ul>{data.map(note =>
-      <li key={note.id}>{note.task}</li>
+    <ul>{notes.map(note =>
+      <li key={note.id}><Note task={note.task} /></li>
     )}</ul>
   );
 };
