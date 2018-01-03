@@ -1,8 +1,7 @@
-.Notes {
-  border: 2px solid black;
-  text-align: center;
-  background: #f5f5f5;
-  color: #333;
-  margin: 20px;
-  padding: 20px;
+.notes {
+  margin: 0.5em;
+  padding-left: 0;
+
+  max-width: 10em;
+  list-style: none;
 }
