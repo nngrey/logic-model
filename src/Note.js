@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Note = ({task, onDelete}) => {
+const Note = ({children, ...props}) => {
   return (
-    <div>
-      <span>{task}</span>
-      <button onClick={onDelete}>x</button>
+    <div {...props}>
+      {children}
     </div>
   );
 };
