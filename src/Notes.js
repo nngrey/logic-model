@@ -3,20 +3,19 @@ import Note from './Note';
 import Editable from './Editable';
 import './Notes.css';
 
-const Notes = ({
-  notes,
-  onNoteClick=() => {}, onEdit=() => {}, onDelete=() => {}
-}) => {
+const Notes = (props) => {
+  const notes = props.notes;
+
   return (
     <ul className="notes">
-      {notes.map(({id, editing, task}) =>
-        <li key={id}>
-           <Note className="note" onClick={onNoteClick.bind(null, id)}>
+      {notes.map((note) =>
+        <li key={note.id}>
+           <Note className="note" onClick={props.onNoteClick.bind(null, note.id)}>
              <Editable
-                editing={editing}
-                value={task}
-                onEdit={onEdit.bind(null, id)} />
-             <button className="delete" onClick={onDelete.bind(null, id)}>x</button>
+                editing={note.editing}
+                value={note.task}
+                onEdit={props.onEdit.bind(null, note.id)} />
+             <button className="delete" onClick={props.onDelete.bind(null, note.id)}>x</button>
            </Note>
          </li>
       )}

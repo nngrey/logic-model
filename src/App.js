@@ -20,14 +20,13 @@ class App extends Component {
       ]
     };
   }
-  render() {
-    const {notes} = this.state;
 
+  render() {
     return (
       <div>
         <button className="add-note" onClick={this.addNote}>+</button>
         <Notes
-          notes={notes}
+          notes={this.state.notes}
           onNoteClick={this.activateNoteEdit}
           onEdit={this.editNote}
           onDelete={this.deleteNote}
