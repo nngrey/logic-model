@@ -1,4 +1,4 @@
-import { ADD_NOTE } from '../constants/ActionTypes';
+import { ADD_NOTE, DELETE_NOTE } from '../constants/ActionTypes';
 import uuid from 'uuid';
 
 const initialState = [
@@ -22,6 +22,10 @@ export default function notes(state = initialState, action) {
           task: "Add note"
         }
       ]
+    case DELETE_NOTE:
+      return state.filter(note =>
+        note.id !== action.id
+      )
     default:
       return state
     }

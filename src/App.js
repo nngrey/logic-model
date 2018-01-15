@@ -8,26 +8,18 @@ import './styles/App.css';
 class App extends Component {
 
   render() {
+    const { actions, notes } = this.props;
     return (
       <div>
-        <button className="add-note" onClick={this.props.actions.addNote} >+</button>
+        <button className="add-note" onClick={actions.addNote} >+</button>
         <Notes
-          notes={this.props.notes}
+          notes={notes}
           onNoteClick={this.activateNoteEdit}
           onEdit={this.editNote}
-          onDelete={this.deleteNote}
+          onDelete={actions.deleteNote}
           />
       </div>
     );
-  }
-
-  deleteNote = (id, e) => {
-    // Avoid bubbling to edit
-    e.stopPropagation();
-
-    this.setState({
-      notes: this.state.notes.filter(note => note.id !== id)
-    });
   }
 
   activateNoteEdit = (id) => {
