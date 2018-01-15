@@ -1,11 +1,11 @@
 import React from 'react';
 import Note from './Note';
 import Editable from './Editable';
-import './Notes.css';
+import './styles/Notes.css';
 
 const Notes = (props) => {
   const notes = props.notes;
-
+  console.log(notes);
   return (
     <ul className="notes">
       {notes.map((note) =>

@@ -1,47 +1,24 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import * as NoteActions from "./actions";
 import Notes from './Notes';
-import uuid from 'uuid';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      notes: [
-        {
-          id: uuid.v4(),
-          task: 'Learn React'
-        },
-        {
-          id: uuid.v4(),
-          task: 'Do laundry'
-        }
-      ]
-    };
-  }
 
   render() {
     return (
       <div>
-        <button className="add-note" onClick={this.addNote}>+</button>
+        <button className="add-note" onClick={this.props.actions.addNote} >+</button>
         <Notes
-          notes={this.state.notes}
+          notes={this.props.notes}
           onNoteClick={this.activateNoteEdit}
           onEdit={this.editNote}
           onDelete={this.deleteNote}
           />
       </div>
     );
-  }
-
-  addNote = () => {
-    this.setState({
-      notes: this.state.notes.concat([{
-        id: uuid.v4(),
-        task: 'New task'
-      }])
-    });
   }
 
   deleteNote = (id, e) => {
@@ -55,7 +32,7 @@ class App extends Component {
 
   activateNoteEdit = (id) => {
     this.setState({
-      notes: this.state.notes.map(note => {
+      notes: this.props.notes.map(note => {
         if(note.id === id) {
           note.editing = true;
         }
@@ -79,4 +56,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  notes: state.notes
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(NoteActions, dispatch)
+})
+
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+export default AppContainer;
