@@ -14,37 +14,12 @@ class App extends Component {
         <button className="add-note" onClick={actions.addNote} >+</button>
         <Notes
           notes={notes}
-          onNoteClick={this.activateNoteEdit}
-          onEdit={this.editNote}
+          onNoteClick={actions.editingNote}
+          onEdit={actions.editNote}
           onDelete={actions.deleteNote}
           />
       </div>
     );
-  }
-
-  activateNoteEdit = (id) => {
-    this.setState({
-      notes: this.props.notes.map(note => {
-        if(note.id === id) {
-          note.editing = true;
-        }
-
-        return note;
-      })
-    });
-  }
-
-  editNote = (id, task) => {
-    this.setState({
-      notes: this.state.notes.map(note => {
-        if(note.id === id) {
-          note.editing = false;
-          note.task = task;
-        }
-
-        return note;
-      })
-    });
   }
 }
 
